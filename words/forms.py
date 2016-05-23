@@ -13,7 +13,8 @@ class GameForm(ModelForm):
     def save(self, commit=True):
         instance = super(GameForm,self).save(commit=False)
         l = getattr(instance,'letter')
-        for field in Row._meta.get_all_field_names():
+        fields = [f.name for f in Row._meta.get_fields()]
+        for field in fields:
             if field not in ['id','letter'] and not getattr(instance,field).startswith(l):
                 setattr(instance,field,'')
         if commit:
