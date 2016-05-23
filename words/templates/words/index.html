@@ -8,9 +8,14 @@
 <div>
 <div class="row"><a href="{% url 'words:play' %}">Play New</a> </div>
 {% if rows %}
-    {% for game in row %}
+    {% for game in rows %}
     <div class="row">
-        <div class="col-sm-2"> game.letter</div>
+        <div class="col-sm-2"> letter: {{game.letter}} score: {{game.score}}</div>
+        <div class="col-sm-2">name:  {{game.name}}</div>
+        <div class="col-sm-2">cast: {{game.cast}}</div>
+        <div class="col-sm-2">country: {{game.country}}</div>
+        <div class="col-sm-2">food: {{game.food}}</div>
+        <div class="col-sm-2">animal: {{game.animal}}</div>
     </div>
     {% endfor %}
 {% else %}

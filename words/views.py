@@ -1,6 +1,8 @@
 import random
 import string
 
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from words.models import Row
@@ -27,5 +29,12 @@ def play(request):
     rows = Row.objects.all()
     letters = [l.letter for l in rows]
     letter = create_new(letters)
-    context = {'letter': letter, 'form':GameForm()}
+    context = {'letter': letter, 'form':GameForm(initial={'letter':letter})}
     return render(request, 'words/play.html', context)
+
+
+def save(request):
+    form = GameForm(request.POST)
+    if form.is_valid():
+        form.save()
+    return HttpResponseRedirect(reverse('words:index'))

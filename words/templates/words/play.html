@@ -8,7 +8,7 @@
 <h1>Current letter: {{letter}} </h1>
 
 <div class="row">
-    <form action="/your-name/" method="post">
+    <form action="{% url 'words:save' %}" method="post">
     {% csrf_token %}
     {{form.as_p}}
         <div class ="col-sm-12"><input type="submit" value="Save"></div>

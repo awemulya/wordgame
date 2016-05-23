@@ -13,3 +13,10 @@ class Row(models.Model):
 
     def __str__(self):
         return self.letter
+
+    def score(self):
+        count = 0
+        for field in Row._meta.get_all_field_names():
+            if getattr(self,field) and field not in ['letter', 'id']:
+                count +=1
+        return count
